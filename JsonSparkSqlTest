@@ -1,0 +1,19 @@
+import org.apache.spark.sql.SQLContext
+import org.apache.spark.{SparkConf, SparkContext}
+
+object HiveTest {
+  def main(args: Array[String]): Unit = {
+    val dp = new SparkConf().setAppName("hive job").setMaster("local[*]")
+    val sc = new SparkContext(dp)
+    val sqlContext = new SQLContext(sc)
+
+    val file = sqlContext.read.json("file:/Users/nilesh/Downloads/student.json")
+    println("show data")
+    file.show()
+    println("creating temp table")
+    file.registerTempTable("student")
+    val r = sqlContext.sql("select * from student where id=1").show()
+
+  }
+
+}
