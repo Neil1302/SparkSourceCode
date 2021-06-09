@@ -13,7 +13,7 @@ object TestPartition {
 		val cfg = new SparkConf().setAppName("TestPartitionerJob")
 		val sc = new SparkContext(cfg)
 
-		val data = for { x <- 1 to 4; y <- 1 to 3 } yield (x, y)
+		val data = for ( x <- 1 to 4; y <- 1 to 3 ) yield (x, y)
 		
 		println(">>>> Test data:")
 		data.foreach(println)
